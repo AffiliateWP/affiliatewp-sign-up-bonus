@@ -27,40 +27,6 @@
  * @version 1.0
  */
 
-/**
- * Create a signup bonus when an affiliate registers
- * 
- * @since 1.0
- */
-function affwp_sub_add_affiliate( $affiliate_id ) {
-
-	// return if affiliates must be approved first
-	if ( affiliate_wp()->settings->get( 'require_approval' ) ) {
-		return;
-	}
-	
-	// create the sign up bonus
-	affwp_sub_create_bonus( $affiliate_id );
-
-}
-add_action( 'affwp_insert_affiliate', 'affwp_sub_add_affiliate' );
-
-/**
- * Create the signup bonus once the affiliate has been approved
- * 
- * @since 1.0
- */
-function affwp_sub_award_sign_up_bonus_once_approved( $affiliate_id, $status, $old_status ) {
-
-	if ( 'active' != $status && 'pending' == $old_status ) {
-		return;
-	}
-
-	// create the sign up bonus
-	affwp_sub_create_bonus( $affiliate_id );
-
-}
-add_action( 'affwp_set_affiliate_status', 'affwp_sub_award_sign_up_bonus_once_approved', 10, 3 );
 
 /**
  * Create the signup bonus
@@ -92,6 +58,41 @@ function affwp_sub_create_bonus( $affiliate_id = 0 ) {
 	// insert new referral for the sign up bonus
 	affwp_add_referral( $data );
 }
+
+/**
+ * Create a signup bonus when an affiliate registers
+ * 
+ * @since 1.0
+ */
+function affwp_sub_create_bonus_at_registration( $affiliate_id ) {
+
+	// return if affiliates must be approved first
+	if ( affiliate_wp()->settings->get( 'require_approval' ) ) {
+		return;
+	}
+	
+	// create the sign up bonus
+	affwp_sub_create_bonus( $affiliate_id );
+
+}
+add_action( 'affwp_insert_affiliate', 'affwp_sub_create_bonus_at_registration' );
+
+/**
+ * Create the signup bonus once the affiliate has been approved
+ * 
+ * @since 1.0
+ */
+function affwp_sub_create_bonus_after_approval( $affiliate_id, $status, $old_status ) {
+
+	if ( 'active' != $status && 'pending' == $old_status ) {
+		return;
+	}
+
+	// create the sign up bonus
+	affwp_sub_create_bonus( $affiliate_id );
+
+}
+add_action( 'affwp_set_affiliate_status', 'affwp_sub_create_bonus_after_approval', 10, 3 );
 
 /**
  * Settings
