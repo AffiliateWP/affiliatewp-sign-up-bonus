@@ -5,7 +5,7 @@
  * Description: Entice more affiliates to register by offering them a sign up bonus
  * Author: Pippin Williamson and Andrew Munro
  * Author URI: http://affiliatewp.com
- * Version: 1.0
+ * Version: 1.0.1
  * Text Domain: affiliatewp-sign-up-bonus
  * Domain Path: languages
  *

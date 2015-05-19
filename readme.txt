@@ -2,8 +2,8 @@
 Contributors: sumobi, mordauk
 Tags: AffiliateWP, affiliate, Pippin Williamson, Andrew Munro, mordauk, pippinsplugins, sumobi, ecommerce, e-commerce, e commerce, selling, membership, referrals, marketing
 Requires at least: 3.3
-Tested up to: 4.0
-Stable tag: 1.0
+Tested up to: 4.2.2
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -42,7 +42,12 @@ Finally, go to Affiliates &rarr; Settings &rarr; Integrations and enter the amou
 
 == Upgrade Notice ==
 
+Prevented multiple referrals from being created when the affiliate was deactivated and/or activated again from the admin
+
 == Changelog ==
+
+= 1.0.1 =
+* Fix: Prevented multiple referrals from being created when the affiliate was deactivated and/or activated again from the admin
 
 = 1.0 =
 * Initial release
