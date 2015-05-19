@@ -84,12 +84,10 @@ add_action( 'affwp_insert_affiliate', 'affwp_sub_create_bonus_at_registration' )
  */
 function affwp_sub_create_bonus_after_approval( $affiliate_id, $status, $old_status ) {
 
-	if ( 'active' != $status && 'pending' == $old_status ) {
-		return;
+	if ( 'active' == $status && 'pending' == $old_status ) {
+		// create the sign up bonus
+		affwp_sub_create_bonus( $affiliate_id );
 	}
-
-	// create the sign up bonus
-	affwp_sub_create_bonus( $affiliate_id );
 
 }
 add_action( 'affwp_set_affiliate_status', 'affwp_sub_create_bonus_after_approval', 10, 3 );
