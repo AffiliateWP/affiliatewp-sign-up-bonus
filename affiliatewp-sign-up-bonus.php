@@ -3,8 +3,8 @@
  * Plugin Name: AffiliateWP - Sign Up Bonus
  * Plugin URI: http://affiliatewp.com/addons/sign-up-bonus/
  * Description: Entice more affiliates to register by offering them a sign up bonus
- * Author: Pippin Williamson and Andrew Munro
- * Author URI: http://affiliatewp.com
+ * Author: Sandhills Development, LLC
+ * Author URI: https://sandhillsdev.com
  * Version: 1.1
  * Text Domain: affiliatewp-sign-up-bonus
  * Domain Path: languages
