@@ -285,12 +285,12 @@ if ( ! class_exists( 'AffiliateWP_Sign_Up_Bonus' ) ) {
 			<tr class="form-row">
 
 				<th scope="row">
-					<label for="has_sign_up_bonus"><?php _e( 'Sign Up Bonus', 'affiliate-wp' ); ?></label>
+					<label for="has_sign_up_bonus"><?php _e( 'Sign Up Bonus', 'affiliatewp-sign-up-bonus' ); ?></label>
 				</th>
 
 				<td>
 					<input type="checkbox" name="has_sign_up_bonus" id="has_sign_up_bonus" value="1" <?php checked( 1, 1 ); ?> />
-					<p class="description"><?php _e( 'Award sign up bonus?', 'affiliate-wp' ); ?></p>
+					<p class="description"><?php _e( 'Award sign up bonus?', 'affiliatewp-sign-up-bonus' ); ?></p>
 				</td>
 
 			</tr>
@@ -298,12 +298,12 @@ if ( ! class_exists( 'AffiliateWP_Sign_Up_Bonus' ) ) {
 			<tr class="form-row">
 
 				<th scope="row">
-					<label for="sign_up_bonus"><?php _e( 'Sign Up Bonus Amount', 'affiliate-wp' ); ?></label>
+					<label for="sign_up_bonus"><?php _e( 'Sign Up Bonus Amount', 'affiliatewp-sign-up-bonus' ); ?></label>
 				</th>
 
 				<td>
 					<input class="regular-text" type="text" name="sign_up_bonus" id="sign_up_bonus" value="<?php echo affiliate_wp()->settings->get( 'sign_up_bonus' ); ?>" />
-					<p class="description"><?php _e( 'How much should this affiliate be awarded as a sign up bonus? Leaving blank will default to the global amount', 'affiliate-wp' ); ?></p>
+					<p class="description"><?php _e( 'How much should this affiliate be awarded as a sign up bonus? Leaving blank will default to the global amount', 'affiliatewp-sign-up-bonus' ); ?></p>
 				</td>
 
 			</tr>
