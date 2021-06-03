@@ -51,7 +51,7 @@ class AffiliateWP_SB_Requirements_Check extends AffiliateWP_Requirements_Check {
 	/**
 	 * Add-on requirements.
 	 *
-	 * @since 1.0.0
+	 * @since 1.2
 	 * @var   array[]
 	 */
 	protected $addon_requirements = array(
