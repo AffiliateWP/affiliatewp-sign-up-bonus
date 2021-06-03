@@ -9,7 +9,7 @@
  * @since       1.0.0
  */
 
-// Exit if accessed directly
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 if ( ! class_exists( 'AffiliateWP_Sign_Up_Bonus' ) ) {
@@ -39,6 +39,7 @@ if ( ! class_exists( 'AffiliateWP_Sign_Up_Bonus' ) ) {
 		 * The version number of AffiliateWP
 		 *
 		 * @since 1.0
+		 * @var   string
 		 */
 		private $version = '1.1';
 
@@ -88,7 +89,7 @@ if ( ! class_exists( 'AffiliateWP_Sign_Up_Bonus' ) ) {
 		 * @return void
 		 */
 		public function __clone() {
-			// Cloning instances of the class is forbidden
+			// Cloning instances of the class is forbidden.
 			_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'affiliatewp-sign-up-bonus' ), '1.1' );
 		}
 
@@ -100,7 +101,7 @@ if ( ! class_exists( 'AffiliateWP_Sign_Up_Bonus' ) ) {
 		 * @return void
 		 */
 		public function __wakeup() {
-			// Unserializing instances of the class is forbidden
+			// Unserializing instances of the class is forbidden.
 			_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'affiliatewp-sign-up-bonus' ), '1.1' );
 		}
 
@@ -164,26 +165,26 @@ if ( ! class_exists( 'AffiliateWP_Sign_Up_Bonus' ) ) {
 		 */
 		public function load_textdomain() {
 
-			// Set filter for plugin's languages directory
+			// Set filter for plugin's languages directory.
 			$lang_dir = dirname( plugin_basename( $this->file ) ) . '/languages/';
 			$lang_dir = apply_filters( 'affiliatewp_sign_up_bonus_languages_directory', $lang_dir );
 
-			// Traditional WordPress plugin locale filter
-			$locale   = apply_filters( 'plugin_locale',  get_locale(), 'affiliatewp-sign-up-bonus' );
-			$mofile   = sprintf( '%1$s-%2$s.mo', 'affiliatewp-sign-up-bonus', $locale );
+			// Traditional WordPress plugin locale filter.
+			$locale = apply_filters( 'plugin_locale', get_locale(), 'affiliatewp-sign-up-bonus' );
+			$mofile = sprintf( '%1$s-%2$s.mo', 'affiliatewp-sign-up-bonus', $locale );
 
-			// Setup paths to current locale file
+			// Setup paths to current locale file.
 			$mofile_local  = $lang_dir . $mofile;
 			$mofile_global = WP_LANG_DIR . '/affiliatewp-sign-up-bonus/' . $mofile;
 
 			if ( file_exists( $mofile_global ) ) {
-				// Look in global /wp-content/languages/affiliatewp-sign-up-bonus/ folder
+				// Look in global /wp-content/languages/affiliatewp-sign-up-bonus/ folder.
 				load_textdomain( 'affiliatewp-sign-up-bonus', $mofile_global );
 			} elseif ( file_exists( $mofile_local ) ) {
-				// Look in local /wp-content/plugins/affiliatewp-sign-up-bonus/languages/ folder
+				// Look in local /wp-content/plugins/affiliatewp-sign-up-bonus/languages/ folder.
 				load_textdomain( 'affiliatewp-sign-up-bonus', $mofile_local );
 			} else {
-				// Load the default language files
+				// Load the default language files.
 				load_plugin_textdomain( 'affiliatewp-sign-up-bonus', false, $lang_dir );
 			}
 		}
@@ -197,7 +198,7 @@ if ( ! class_exists( 'AffiliateWP_Sign_Up_Bonus' ) ) {
 		 */
 		private function hooks() {
 
-			// plugin meta
+			// plugin meta.
 			add_filter( 'plugin_row_meta', array( $this, 'plugin_meta' ), null, 2 );
 
 			add_action( 'affwp_insert_affiliate', array( $this, 'create_bonus_for_new_affiliate' ) );
@@ -212,40 +213,42 @@ if ( ! class_exists( 'AffiliateWP_Sign_Up_Bonus' ) ) {
 		/**
 		 * Modify plugin metalinks
 		 *
-		 * @access      public
-		 * @since       1.1
-		 * @param       array $links The current links array
-		 * @param       string $file A specific plugin table entry
-		 * @return      array $links The modified links array
+		 * @access public
+		 * @since  1.1
+		 * @param array  $links The current links array.
+		 * @param string $file A specific plugin table entry.
+		 * @return array $links The modified links array
 		 */
 		public function plugin_meta( $links, $file ) {
-		    if ( $file == plugin_basename( $this->file ) ) {
-		        $plugins_link = array(
-		            '<a title="' . __( 'Get more add-ons for AffiliateWP', 'affiliatewp-sign-up-bonus' ) . '" href="http://affiliatewp.com/addons/" target="_blank">' . __( 'More add-ons', 'affiliatewp-sign-up-bonus' ) . '</a>'
-		        );
+			if ( plugin_basename( $this->file ) === $file ) {
+					$plugins_link = array(
+						'<a title="' . __( 'Get more add-ons for AffiliateWP', 'affiliatewp-sign-up-bonus' ) . '" href="http://affiliatewp.com/addons/" target="_blank">' . __( 'More add-ons', 'affiliatewp-sign-up-bonus' ) . '</a>',
+					);
 
-		        $links = array_merge( $links, $plugins_link );
-		    }
+					$links = array_merge( $links, $plugins_link );
+			}
 
-		    return $links;
+			return $links;
 		}
 
 		/**
 		 * Create the signup bonus
 		 *
 		 * @since 1.0
+		 * @param int   $affiliate_id Affiliate ID.
+		 * @param float $sign_up_bonus Sign up bonus.
 		 */
 		public function create_bonus( $affiliate_id = 0, $sign_up_bonus = 0 ) {
 
-			// return if no affiliate ID
+			// return if no affiliate ID.
 			if ( ! $affiliate_id ) {
 				return;
 			}
 
-			// get the sign up bonus
+			// get the sign up bonus.
 			$amount = isset( $sign_up_bonus ) && $sign_up_bonus ? $sign_up_bonus : affiliate_wp()->settings->get( 'sign_up_bonus' );
 
-			// return if no sign up bonus
+			// return if no sign up bonus.
 			if ( ! $amount ) {
 				return;
 			}
@@ -257,12 +260,12 @@ if ( ! class_exists( 'AffiliateWP_Sign_Up_Bonus' ) ) {
 				'status'       => 'unpaid'
 			);
 
-			// insert new referral for the sign up bonus
+			// insert new referral for the sign up bonus.
 			affwp_add_referral( $data );
 		}
 
 		/**
-		 * Create a signup bonus when an affiliate is created
+		 * Create a signup bonus when an affiliate is created.
 		 *
 		 * @since 1.0
 		 */
@@ -272,42 +275,36 @@ if ( ! class_exists( 'AffiliateWP_Sign_Up_Bonus' ) ) {
 			$sign_up_bonus     = isset( $_POST['sign_up_bonus'] ) ? $_POST['sign_up_bonus'] : affiliate_wp()->settings->get( 'sign_up_bonus' );
 			$is_pending        = isset( $_POST['status'] ) && 'pending' == $_POST['status'] ? true : false;
 
-			//var_dump( $is_pending ); wp_die();
-
 			$version = get_option( 'affwp_version' );
 
-			// affiliate added manually through admin
+			// affiliate added manually through admin.
 			if ( is_admin() ) {
 
 				// 1.6.5 or lower did not have new status option
 				if ( version_compare( $version, '1.7', '<' ) ) {
 
-					// only create if require approval is off
+					// only create if require approval is off.
 					if ( ! affiliate_wp()->settings->get( 'require_approval' ) ) {
 						$this->create_bonus( $affiliate_id );
 					}
-
 				} elseif ( $has_sign_up_bonus ) {
 
 					if ( $is_pending ) {
 
-						// if affiliate is set to pending status, store the sign up bonus in affiliate meta so this can be awarded to them when they are approved
+						// if affiliate is set to pending status, store the sign up bonus in affiliate meta so this can be awarded to them when they are approved.
 						affwp_add_affiliate_meta( $affiliate_id, 'sign_up_bonus', $sign_up_bonus );
 
 					} else {
-						// With AffiliateWP 1.7 or higher you can enable/disable bonus on per-affiliate basis
+						// With AffiliateWP 1.7 or higher you can enable/disable bonus on per-affiliate basis.
 						$this->create_bonus( $affiliate_id, $sign_up_bonus );
 					}
-
 				}
-
 			} else {
 				// affiliate registered via front-end
-				// only create bonus if affiliates don't need to be approved
+				// only create bonus if affiliates don't need to be approved.
 				if ( ! affiliate_wp()->settings->get( 'require_approval' ) ) {
 					$this->create_bonus( $affiliate_id );
 				}
-
 			}
 
 		}
@@ -316,23 +313,25 @@ if ( ! class_exists( 'AffiliateWP_Sign_Up_Bonus' ) ) {
 		 * Create the signup bonus once the affiliate has been approved
 		 *
 		 * @since 1.0
+		 * @param int    $affiliate_id Affiliate ID.
+		 * @param string $status Affiliate status.
+		 * @param string $old_status Affiliate old status.
 		 */
 		public function create_bonus_after_approval( $affiliate_id, $status, $old_status ) {
 
-			// use amount from affiliate meta if there is one
+			// use amount from affiliate meta if there is one.
 			$sign_up_bonus = affwp_get_affiliate_meta( $affiliate_id, 'sign_up_bonus', true );
 			$amount        = $sign_up_bonus ? $sign_up_bonus : '';
 
 			if ( 'active' == $status && 'pending' == $old_status ) {
-				// create the sign up bonus
+				// create the sign up bonus.
 				$this->create_bonus( $affiliate_id, $amount );
 
-				// delete affiliate meta since we no longer need it
+				// delete affiliate meta since we no longer need it.
 				if ( $sign_up_bonus ) {
 					affwp_delete_affiliate_meta( $affiliate_id, 'sign_up_bonus' );
 				}
 			}
-
 
 		}
 
@@ -347,7 +346,7 @@ if ( ! class_exists( 'AffiliateWP_Sign_Up_Bonus' ) ) {
 			if ( version_compare( $version, '1.7', '<' ) ) {
 				return;
 			}
-		?>
+			?>
 
 			<tr class="form-row">
 
@@ -382,16 +381,17 @@ if ( ! class_exists( 'AffiliateWP_Sign_Up_Bonus' ) ) {
 		 * Settings
 		 *
 		 * @since 1.0
-		*/
+		 * @param array $settings Integrations settings.
+		 */
 		public function settings( $settings = array() ) {
 
-			$settings[ 'sign_up_bonus' ] = array(
+			$settings['sign_up_bonus'] = array(
 				'name' => __( 'Affiliate Sign Up Bonus', 'affiliatewp-sign-up-bonus' ),
 				'desc' => __( 'Enter the amount an affiliate should receive when they register.', 'affiliatewp-sign-up-bonus' ),
 				'type' => 'number',
 				'size' => 'small',
 				'step' => '1.0',
-				'std' => ''
+				'std'  => '',
 			);
 
 			return $settings;
@@ -415,5 +415,4 @@ if ( ! class_exists( 'AffiliateWP_Sign_Up_Bonus' ) ) {
 	function affiliatewp_sign_up_bonus() {
 		return AffiliateWP_Sign_Up_Bonus::instance();
 	}
-
 }

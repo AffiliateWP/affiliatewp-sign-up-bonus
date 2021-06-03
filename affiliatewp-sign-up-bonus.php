@@ -22,7 +22,7 @@
  * along with AffiliateWP. If not, see <http://www.gnu.org/licenses/>.
  */
 
- // Exit if accessed directly
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -60,7 +60,7 @@ class AffiliateWP_SB_Requirements_Check extends AffiliateWP_Requirements_Check {
 				require_once 'includes/lib/affwp/class-affiliatewp-activation.php';
 			}
 
-			// AffiliateWP activation
+			// AffiliateWP activation.
 			if ( ! class_exists( 'Affiliate_WP' ) ) {
 				$activation = new AffiliateWP_Activation( plugin_dir_path( __FILE__ ), basename( __FILE__ ) );
 				$activation = $activation->run();
@@ -98,7 +98,7 @@ class AffiliateWP_SB_Requirements_Check extends AffiliateWP_Requirements_Check {
 	 * @since 1.2
 	 */
 	public function install() {
-		// Bootstrap to include all of the necessary files
+		// Bootstrap to include all of the necessary files.
 		$this->bootstrap();
 
 		if ( defined( 'AFFWP_SB_VERSION' ) ) {
