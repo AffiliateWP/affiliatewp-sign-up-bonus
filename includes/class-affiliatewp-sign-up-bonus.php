@@ -413,20 +413,7 @@ if ( ! class_exists( 'AffiliateWP_Sign_Up_Bonus' ) ) {
 	 * @return object The one true AffiliateWP_Sign_Up_Bonus Instance
 	 */
 	function affiliatewp_sign_up_bonus() {
-
-	    if ( ! class_exists( 'Affiliate_WP' ) ) {
-
-	        if ( ! class_exists( 'AffiliateWP_Activation' ) ) {
-	            require_once 'includes/class-activation.php';
-	        }
-
-	        $activation = new AffiliateWP_Activation( plugin_dir_path( __FILE__ ), basename( __FILE__ ) );
-	        $activation = $activation->run();
-	    } else {
-	        return AffiliateWP_Sign_Up_Bonus::instance();
-	    }
-
+		return AffiliateWP_Sign_Up_Bonus::instance();
 	}
-	add_action( 'plugins_loaded', 'affiliatewp_sign_up_bonus', 100 );
 
 }
