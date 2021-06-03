@@ -14,7 +14,12 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 if ( ! class_exists( 'AffiliateWP_Sign_Up_Bonus' ) ) {
 
-	final class AffiliateWP_Sign_Up_Bonus {
+	/**
+	 * Main plugin bootstrap.
+	 *
+	 * @since 1.0.0
+	 */
+	final class AffiliateWP_Sign_Up_Bonus  {
 
 		/**
 		 * Holds the instance
@@ -25,7 +30,6 @@ if ( ! class_exists( 'AffiliateWP_Sign_Up_Bonus' ) ) {
 		 * TL;DR This is a static property property that holds the singleton instance.
 		 *
 		 * @var object
-		 * @static
 		 * @since 1.0
 		 */
 		private static $instance;
@@ -39,6 +43,14 @@ if ( ! class_exists( 'AffiliateWP_Sign_Up_Bonus' ) ) {
 		private $version = '1.1';
 
 		/**
+		 * Main plugin file.
+		 *
+		 * @since 1.0.0
+		 * @var   string
+		 */
+		private $file = '';
+
+		/**
 		 * Main AffiliateWP_Sign_Up_Bonus Instance
 		 *
 		 * Insures that only one instance of AffiliateWP_Sign_Up_Bonus exists in memory at any one
@@ -47,12 +59,16 @@ if ( ! class_exists( 'AffiliateWP_Sign_Up_Bonus' ) ) {
 		 * @since 1.0
 		 * @static
 		 * @static var array $instance
+		 *
+		 * @param string $file Main plugin file.
 		 * @return The one true AffiliateWP_Sign_Up_Bonus
 		 */
-		public static function instance() {
+		public static function instance( $file = null ) {
 			if ( ! isset( self::$instance ) && ! ( self::$instance instanceof AffiliateWP_Sign_Up_Bonus ) ) {
 
 				self::$instance = new AffiliateWP_Sign_Up_Bonus;
+				self::$instance->file = $file;
+				self::$instance->setup_constants();
 				self::$instance->load_textdomain();
 				self::$instance->hooks();
 
@@ -89,6 +105,36 @@ if ( ! class_exists( 'AffiliateWP_Sign_Up_Bonus' ) ) {
 		}
 
 		/**
+		 * Setup plugin constants.
+		 *
+		 * @access private
+		 * @since 1.2
+		 * @return void
+		 */
+		private function setup_constants() {
+			// Plugin version.
+			if ( ! defined( 'AFFWP_SB_VERSION' ) ) {
+				define( 'AFFWP_SB_VERSION', $this->version );
+			}
+
+			// Plugin Folder Path.
+			if ( ! defined( 'AFFWP_SB_PLUGIN_DIR' ) ) {
+				define( 'AFFWP_SB_PLUGIN_DIR', plugin_dir_path( $this->file ) );
+			}
+
+			// Plugin Folder URL.
+			if ( ! defined( 'AFFWP_SB_PLUGIN_URL' ) ) {
+				define( 'AFFWP_SB_PLUGIN_URL', plugin_dir_url( $this->file ) );
+			}
+
+			// Plugin Root File.
+			if ( ! defined( 'AFFWP_SB_PLUGIN_FILE' ) ) {
+				define( 'AFFWP_SB_PLUGIN_FILE', $this->file );
+			}
+		}
+
+
+		/**
 		 * Constructor Function
 		 *
 		 * @since 1.1
@@ -119,7 +165,7 @@ if ( ! class_exists( 'AffiliateWP_Sign_Up_Bonus' ) ) {
 		public function load_textdomain() {
 
 			// Set filter for plugin's languages directory
-			$lang_dir = dirname( plugin_basename( __FILE__ ) ) . '/languages/';
+			$lang_dir = dirname( plugin_basename( $this->file ) ) . '/languages/';
 			$lang_dir = apply_filters( 'affiliatewp_sign_up_bonus_languages_directory', $lang_dir );
 
 			// Traditional WordPress plugin locale filter
@@ -173,7 +219,7 @@ if ( ! class_exists( 'AffiliateWP_Sign_Up_Bonus' ) ) {
 		 * @return      array $links The modified links array
 		 */
 		public function plugin_meta( $links, $file ) {
-		    if ( $file == plugin_basename( __FILE__ ) ) {
+		    if ( $file == plugin_basename( $this->file ) ) {
 		        $plugins_link = array(
 		            '<a title="' . __( 'Get more add-ons for AffiliateWP', 'affiliatewp-sign-up-bonus' ) . '" href="http://affiliatewp.com/addons/" target="_blank">' . __( 'More add-ons', 'affiliatewp-sign-up-bonus' ) . '</a>'
 		        );
