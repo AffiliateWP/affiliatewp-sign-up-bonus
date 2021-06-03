@@ -49,6 +49,24 @@ class AffiliateWP_SB_Requirements_Check extends AffiliateWP_Requirements_Check {
 	protected $slug = 'affiliatewp-sign-up-bonus';
 
 	/**
+	 * Add-on requirements.
+	 *
+	 * @since 1.0.0
+	 * @var   array[]
+	 */
+	protected $addon_requirements = array(
+		// AffiliateWP.
+		'affwp' => array(
+			'minimum' => '2.6',
+			'name'    => 'AffiliateWP',
+			'exists'  => true,
+			'current' => false,
+			'checked' => false,
+			'met'     => false,
+		),
+	);
+
+	/**
 	 * Bootstrap everything.
 	 *
 	 * @since 1.2
