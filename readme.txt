@@ -4,7 +4,7 @@ Tags: AffiliateWP, affiliate, Pippin Williamson, Andrew Munro, mordauk, pippinsp
 Requires at least: 3.3
 Tested up to: 5.7
 Requires PHP: 5.3
-Stable tag: 1.1
+Stable tag: 1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -70,6 +70,12 @@ Finally, go to Affiliates &rarr; Settings &rarr; Integrations and enter the amou
 Prevented multiple referrals from being created when the affiliate was deactivated and/or activated again from the admin
 
 == Changelog ==
+
+= 1.2 =
+* New: Enforce minimum dependency requirements checking
+* Improved: Requires PHP 5.6 minimum
+* Improved: Requires WordPress 5.0 minimum
+* Improved: Requires AffiliateWP 2.6 minimum
 
 = 1.1 =
 * Fix: Fixed a bug where referrals were not created due to changes in AffiliateWP v1.7
