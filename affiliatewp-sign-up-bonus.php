@@ -5,7 +5,7 @@
  * Description: Entice more affiliates to register by offering them a sign up bonus
  * Author: Sandhills Development, LLC
  * Author URI: https://sandhillsdev.com
- * Version: 1.1
+ * Version: 1.2
  * Text Domain: affiliatewp-sign-up-bonus
  * Domain Path: languages
  *

@@ -41,7 +41,7 @@ if ( ! class_exists( 'AffiliateWP_Sign_Up_Bonus' ) ) {
 		 * @since 1.0
 		 * @var   string
 		 */
-		private $version = '1.1';
+		private $version = '1.2';
 
 		/**
 		 * Main plugin file.
