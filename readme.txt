@@ -1,9 +1,9 @@
 === AffiliateWP - Sign Up Bonus ===
 Contributors: sumobi, mordauk
 Tags: AffiliateWP, affiliate, Pippin Williamson, Andrew Munro, mordauk, pippinsplugins, sumobi, ecommerce, e-commerce, e commerce, selling, membership, referrals, marketing
-Requires at least: 3.3
+Requires at least: 5.0
 Tested up to: 5.7
-Requires PHP: 5.3
+Requires PHP: 5.6
 Stable tag: 1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
