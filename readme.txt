@@ -73,9 +73,9 @@ Prevented multiple referrals from being created when the affiliate was deactivat
 
 = 1.2 =
 * New: Enforce minimum dependency requirements checking
-* Improved: Requires PHP 5.6 minimum
-* Improved: Requires WordPress 5.0 minimum
-* Improved: Requires AffiliateWP 2.6 minimum
+* New: Requires PHP 5.6 minimum
+* New: Requires WordPress 5.0 minimum
+* New: Requires AffiliateWP 2.6 minimum
 
 = 1.1 =
 * Fix: Fixed a bug where referrals were not created due to changes in AffiliateWP v1.7
