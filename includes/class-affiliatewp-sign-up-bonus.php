@@ -46,7 +46,7 @@ if ( ! class_exists( 'AffiliateWP_Sign_Up_Bonus' ) ) {
 		/**
 		 * Main plugin file.
 		 *
-		 * @since 1.0.0
+		 * @since 1.2
 		 * @var   string
 		 */
 		private $file = '';
